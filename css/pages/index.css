@@ -109,6 +109,14 @@ footer {
 	color: #FFB6C1;
 }
 
+.social_button #contact-link {
+	content: "[contact]"
+}
+
+.social-button #contact-link:hover {
+	content: "[contact <i class=\"fa fa-paper-plane\" style=\"font-size:85%\"></i>]";
+}
+
 .social-links {
 	line-height: 1.75;
 }
