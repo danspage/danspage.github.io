@@ -16,12 +16,22 @@ function getPostContents(youtubeUrl, title, date, description) {
     var date = new Date(date);
     var dateStr = date.toLocaleDateString();
 
-    newUrl = youtubeUrl.replace("watch?v=", "embed/");
+    var urlSplit = youtubeUrl.split("watch?v=");
+    var vidId = urlSplit[urlSplit.length-1];
+    var newUrl = youtubeUrl.replace("watch?v=", "embed/");
 
 
     return `
         <div class="post">
-            <iframe class="post-video" width="512" height="288" src="${newUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe
+                width="512"
+                height="288"
+                src="https://tube.rvere.com/embed?v=${vidId}"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen>
+            </iframe>
             <p class="post-title">${title}</p>
             <p class="post-date">${dateStr}</p>
             <p class="description">${description}</p>
