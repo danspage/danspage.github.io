@@ -34,7 +34,7 @@ function getPostContents(youtubeUrl, title, date, description) {
             </iframe>
             <p class="post-title">${title}</p>
             <p class="post-date">${dateStr}</p>
-            <p class="description">${description}</p>
+            <p class="post-desc">${description}</p>
         </div>
         `;
 }

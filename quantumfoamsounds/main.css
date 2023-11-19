@@ -139,13 +139,13 @@ body {
     margin-bottom: 0;
 }
 
-.post *:not(.description) {
+.post *:not(.post-desc) {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 
-.description, .description > a {
+.post-desc, .post-desc > a {
     font-size: 20px !important;
 }
 
