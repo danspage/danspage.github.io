@@ -51,7 +51,7 @@ function generatePosts(json) {
     for (var i = 0; i < json.length; i++) {
         newDesc = json[i]['Post'].replaceAll(urlRegex, function(url) {
             console.log(url);
-            return `<a href="${url}">${url}</a>`;
+            return `<a target="_blank" href="${url}">${url}</a>`;
         }).replaceAll("\n", "<br>");
 
         postsHTML.push(
