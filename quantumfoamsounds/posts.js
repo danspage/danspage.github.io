@@ -23,7 +23,7 @@ function getPostContents(youtubeUrl, title, date, description) {
         <div class="post">
             <iframe class="post-video" width="512" height="288" src="${newUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <p class="post-title">${title}</p>
-            <h5 class="post-date">${dateStr}</h5>
+            <p class="post-date">${dateStr}</p>
             <p class="description">${description}</p>
         </div>
         `;
