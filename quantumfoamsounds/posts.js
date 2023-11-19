@@ -18,7 +18,21 @@ function getPostContents(youtubeUrl, title, date, description) {
 
     var urlSplit = youtubeUrl.split("watch?v=");
     var vidId = urlSplit[urlSplit.length-1];
-    var newUrl = youtubeUrl.replace("watch?v=", "embed/");
+
+    var timestampRegex = /(?:(\d+):)?([0-5]?\d):([0-5]\d)/g;
+    var newDesc = description.replaceAll(timestampRegex, function(timestamp) {
+        var segments = timestamp.split(":");
+        var totalSecs = 0;
+        var secsMult = 1;
+        for (var i=segments.length-1; i>=0; i--) {
+            totalSecs += segments[i] * secsMult;
+            secsMult *= 60;
+        }
+
+        return `<a target="_blank" href="https://youtu.be/${vidId}&t=${totalSecs}">${timestamp}</a>`;
+    });
+
+    // https://youtu.be/G2H_TH0gMTo?si=CqHwfy1lMmVbuDiB&t=36110
 
 
     return `
@@ -32,9 +46,9 @@ function getPostContents(youtubeUrl, title, date, description) {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen>
             </iframe>
-            <p class="post-title">${title}</p>
-            <p class="post-date">${dateStr}</p>
-            <p class="post-desc">${description}</p>
+            <h5 class="post-title">${title}</h5>
+            <h5 class="post-date">${dateStr}</h5>
+            <p class="post-desc">${newDesc}</p>
         </div>
         `;
 }
@@ -50,7 +64,6 @@ function generatePosts(json) {
 
     for (var i = 0; i < json.length; i++) {
         newDesc = json[i]['Post'].replaceAll(urlRegex, function(url) {
-            console.log(url);
             return `<a target="_blank" href="${url}">${url}</a>`;
         }).replaceAll("\n", "<br>");
 
